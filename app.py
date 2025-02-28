@@ -14,6 +14,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 # Initialize Flask app
+#This is a test commit to trigger CI/CD
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
