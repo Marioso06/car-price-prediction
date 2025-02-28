@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.10', '3.12']
+        python-version: ['3.10']
 
     steps:
     - uses: actions/checkout@v3
@@ -36,14 +36,18 @@ jobs:
         
     - name: Test with pytest and generate coverage report
       run: |
-        pytest --cov=./ --cov-report=xml
-        
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+        pytest --cov=./ --cov-report=xml --cov-config=.coveragerc
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v5
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         file: ./coverage.xml
         fail_ci_if_error: true
-        
+        flags: python
+        name: python-tests
+        codecov_yml_path: ./codecov.yml
+
   deploy-to-heroku:
     needs: test
     runs-on: ubuntu-latest
