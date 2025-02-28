@@ -14,7 +14,7 @@ omit = ["tests/*", "setup.py", ".venv/*"]
 
 [tool.black]
 line-length = 88
-target-version = ["py38", "py39", "py310"]
+target-version = ["py310", "py312"]
 include = '\.pyi?$'
 
 [tool.isort]
